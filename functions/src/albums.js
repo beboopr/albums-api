@@ -1,4 +1,4 @@
-import dbConnect from "./dbcConnect.js";
+import dbConnect from "./dbConnect.js";
 
 export function getAllAlbums(req, res) {
     const db = dbConnect()
