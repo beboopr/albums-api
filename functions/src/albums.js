@@ -24,6 +24,14 @@ export function getAllAlbums(req, res) {
 export function createNewAlbums(req, res) {
     const db = dbConnect()
     db.collection('albums').add(req.body)
-        .then(doc => res.status(201).send({ success: true, message: 'Album created:' + doc.id }))
+        .then(doc => res.status(201).send({ success: true, message: 'Album created:'}))
+        .catch(err => res.status(500).send({ success: false, message: err }))
+
+}
+export function deleteAlbum(req, res) {
+    const db = dbConnect()
+    const { albumId } = req.params
+    db.collection('albums').doc(albumId).delete()
+        .then(doc => res.status(201).send({ success: true, message: 'Album deleted:' }))
         .catch(err => res.status(500).send({ success: false, message: err }))
 }
